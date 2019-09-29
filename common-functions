@@ -509,6 +509,13 @@ service_list() {
   fi
 }
 
+service_login() {
+  declare desc="Login to a running mysql server"
+  declare SERVICE="$1"
+  local password=$(service_password $SERVICE)
+  service_enter "$SERVICE" mysql -u mysql -p$password $SERVICE
+}
+
 service_logs() {
   declare desc="Displays logs for a service"
   declare SERVICE="$1" TAIL_FLAG="$2"
